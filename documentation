@@ -3,12 +3,13 @@ Solution 1.0
 For the development, I used a local server with WAMP software.
 I created a MySQL database called 'secretserver', with a table named secrets.
 The contets of secrets table: ID, data, generatedKey, TTL, expire
-After you fill all forms at /secretServer/createSecret.html, a php script(createSecret.php) calls a query tothe database
+After you fill all forms at /secretServer/createSecret.html, a php script(createSecret.php) calls a query to the database
 and generates a unique url for the secret data.
-If you paste this link to your browser, a php script (getSecret.php) checks, if you are allowed to access the secret.
-If the number of remaining accesses is greater than 0 in the database (TTL field) then the script prints out the data.
+If you paste this link to your browser, a php script (getSecret.php) checks if you are allowed to access the secret.
+If the number of remaining accesses is greater than 0 in the database (TTL field) 
+and the current date is less or equival to the curent date then the script prints out the data.
 The format of returned data (JSON or XML) depends on the configuration, which is in config.ini.
-The default setting is XML.
+
 
 I also uploaded the API to a real working server hosted at 80.88.90.49 with a minor
 change (Inside the real server version's "createSecret.php", i changed "$servername" to "80.88.90.49" at line 57,
