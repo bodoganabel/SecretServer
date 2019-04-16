@@ -2,8 +2,8 @@
 
 This is a task from Innonic Group.
 
-# Original task:
-----------------------------------------------------------
+Original task below:
+-
 
 # Secret Server Coding Task
 ---
