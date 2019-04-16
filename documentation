@@ -1,0 +1,26 @@
+Solution 1.0
+
+For the development, I used a local server with WAMP software.
+I created a MySQL database called 'secretserver', with a table named secrets.
+The contets of secrets table: ID, data, generatedKey, TTL, expire
+After you fill all forms at /secretServer/createSecret.html, a php script(createSecret.php) calls a query tothe database
+and generates a unique url for the secret data.
+If you paste this link to your browser, a php script (getSecret.php) checks, if you are allowed to access the secret.
+If the number of remaining accesses is greater than 0 in the database (TTL field) then the script prints out the data.
+The format of returned data (JSON or XML) depends on the configuration, which is in config.ini.
+The default setting is XML.
+
+I also uploaded the API to a real working server hosted at 80.88.90.49 with a minor
+change (Inside the real server version's "createSecret.php", i changed "$servername" to "80.88.90.49" at line 57,
+so the server can generate absolute unique secret urls instead of relative urls)
+You can try it following the steps below:
+
+Test steps
+1.) You can create a secret message if you enter this url to your web browser: http://80.88.90.49/SecretServer/createSecret.html
+- There will be a field for the secret message, here you can put your secret as a string.
+- The next field is for the numer of accesses. You cannot watch the secret message more times than this number.
+- The last field can be used to set an expiration date. You cannot access the secret date after that date.
+- Click submit.
+2.) Now you've got an unique link to your secret. For example: http://80.88.90.49/SecretServer/getSecret.php/?Wanted=DETqa1dznS9T
+- Enter this link into your browser, and as I set return type to XML in the config.ini file inside the server, the response should be in XML format.
+
